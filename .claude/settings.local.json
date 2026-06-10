@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\pj2\" -Recurse -Filter \"*hello*\")",
+      "Bash(Select-Object FullName)",
+      "Bash(Get-ChildItem -Path \"c:\\\\pj2\")",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(streamlit run *)",
+      "Bash(pip install *)",
+      "Bash(STREAMLIT_SERVER_HEADLESS=true streamlit run hello.py --logger.level=error)",
+      "Bash(python -c ' *)"
+    ]
+  }
+}
