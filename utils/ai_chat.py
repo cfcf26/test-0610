@@ -30,7 +30,15 @@ def get_api_key() -> str | None:
 
 
 def get_model_name() -> str:
-    return os.getenv("GEMINI_MODEL", "gemini-2.0-flash").strip() or "gemini-2.0-flash"
+    """.env 의 GEMINI_MODEL 또는 Streamlit secrets 에서 모델명을 읽는다."""
+    model = os.getenv("GEMINI_MODEL")
+    if not (model and model.strip()):
+        # 배포 환경 대비: st.secrets 도 지원
+        try:
+            model = st.secrets["GEMINI_MODEL"]
+        except Exception:
+            model = None
+    return (model or "gemini-2.0-flash").strip() or "gemini-2.0-flash"
 
 
 @st.cache_data(ttl=3600, show_spinner=False)
